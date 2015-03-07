@@ -2,7 +2,8 @@
 This service uses ipgeobase.ru database from Russian IP block.
 For storage data uses Redis server.
 For http gateway uses wsgi protocol.
-Output JSON format and support JSONP callback function.
+Output JSON format.
+Support JSONP method, set and get callback function on execute to JavaScript.
 Fast speed if uses receiver and this service on the local host.
 
 
@@ -20,7 +21,8 @@ $ pip install -r requirements.txt
 $ python update.py
 $ python wsgi.py
 ```
-
+ 
+  
 See http://127.0.0.1:8000/ output result.
 
 * Periodically update the database
