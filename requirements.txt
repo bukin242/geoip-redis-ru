@@ -1,0 +1,9 @@
+paste
+webob
+ipdb
+ipython
+iptools
+redis
+requests
+redisco
+python-slugify
