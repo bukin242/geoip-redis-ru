@@ -5,6 +5,7 @@ For http gateway uses wsgi protocol.
 Output JSON format.
 Support JSONP method, set and get callback function on execute to JavaScript.
 Fast speed if uses receiver and this service on the local host.
+Recomended use uwsgi for back-end production server.
 
 
 ### Required software must be install for example "How to start"
