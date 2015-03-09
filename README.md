@@ -1,7 +1,7 @@
 # geoip-redis-ru
 This service uses [ipgeobase.ru](http://ipgeobase.ru) database from Russian IP block.
 For storage data uses [**Redis server**](http://redis.io).
-For http gateway uses **WSGI protocol**.
+For http gateway uses **WSGI** protocol.
 Output **JSON format**.
 Support JSONP method, set and get callback function on execute to JavaScript.
 Fast speed if uses receiver and this service on the local host.
