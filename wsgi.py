@@ -5,12 +5,13 @@ from redis import Redis
 from iptools.ipv4 import ip2long, validate_ip, LOCALHOST
 
 
+CHARSET = 'utf-8'
+
+
 def application(env, start_response):
 
     r = Redis()
-
     request = Request(env)
-
     ip = request.params.get('ip')
 
     if ip:
@@ -22,15 +23,16 @@ def application(env, start_response):
         ip = request.remote_addr
 
     callback = request.params.get('callback')
+    headers = []
 
     if callback:
         callback = callback.encode(request.url_encoding)
-        content_type = 'application/javascript'
+        headers.append(('Content-Type', 'application/javascript; charset=' + CHARSET))
     else:
-        content_type = 'application/json'
+        headers.append(('Content-Type', 'application/json; charset=' + CHARSET))
+        headers.append(('Access-Control-Allow-Origin', '*'))
 
     status = '200 OK'
-    headers = [('Content-Type', content_type + '; charset=utf-8')]
     start_response(status, headers)
 
     dump = {}
@@ -58,7 +60,7 @@ def application(env, start_response):
                 dump.update({'ip': ip})
                 dump.update(obj.city.attributes_dict)
 
-    response_body = dumps(dump, sort_keys=True).decode('unicode-escape').encode('utf8')
+    response_body = dumps(dump, sort_keys=True).decode('unicode-escape').encode(CHARSET)
 
     if callback:
         return [callback, '(', response_body, ')']
